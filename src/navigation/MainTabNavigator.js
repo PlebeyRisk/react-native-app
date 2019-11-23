@@ -5,6 +5,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreenContainer from '../screens/HomeScreen/HomeScreenContainer';
 import Colors from '../constants/Colors';
+import { ICONFONTS } from '../constants';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -21,9 +22,7 @@ const HomeStack = createStackNavigator(
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name='md-home' />
+    <TabBarIcon focused={focused} icon={{name: 'md-home', src: ICONFONTS.IONICONS}} withShadow/>
   )
 };
 
@@ -39,7 +38,7 @@ const AlertsStack = createStackNavigator(
 AlertsStack.navigationOptions = {
   tabBarLabel: 'Alerts',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name='ios-notifications' />
+    <TabBarIcon focused={focused} icon={{name: 'ios-notifications', src: ICONFONTS.IONICONS}} withShadow />
   ),
 };
 
@@ -55,7 +54,7 @@ const PurchasesStack = createStackNavigator(
 PurchasesStack.navigationOptions = {
   tabBarLabel: 'Purchases',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name='md-cart' />
+    <TabBarIcon focused={focused} icon={{name: 'md-cart', src: ICONFONTS.IONICONS}} withShadow />
   ),
 };
 
@@ -71,7 +70,7 @@ const ProfileStack = createStackNavigator(
 ProfileStack.navigationOptions = {
   tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name='md-person' />
+    <TabBarIcon focused={focused} icon={{name: 'md-person', src: ICONFONTS.IONICONS}} withShadow />
   ),
 };
 

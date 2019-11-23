@@ -10,7 +10,10 @@ const roomsData = [
 
 const initialState = {
 	activeRoom: roomsData[0],
-	rooms: roomsData
+	rooms: roomsData,
+	currentTemperature: 21,
+	setTemperature: 21,
+	geoTemperature: 21,
 };
 
 export default (state = initialState, action) => {

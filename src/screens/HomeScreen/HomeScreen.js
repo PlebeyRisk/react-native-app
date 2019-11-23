@@ -1,26 +1,21 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import Colors from '../../constants/Colors';
 import Rooms from '../../components/Rooms';
-import { getObjectByProperty } from '../../utils';
+import RoomSettings from '../../components/RoomSettings/RoomSettings';
 
 const HomeScreen = ({ activeRoom, rooms, setActiveRoom }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>
-          {getObjectByProperty(rooms, 'name', activeRoom.name).title}
+          {activeRoom.title}
         </Text>
       </View>
-      <View
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
-          <Rooms rooms={rooms} activeRoom={activeRoom} setActiveRoom={setActiveRoom}/>
+      <View style={styles.container}>
+        <Rooms rooms={rooms} activeRoom={activeRoom} setActiveRoom={setActiveRoom}/>
+        <RoomSettings/>
       </View>
     </View>
   );

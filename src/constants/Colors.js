@@ -2,6 +2,7 @@ const tintColor = '#1098D8';
 const lightColor ='#fff';
 const darkColor = '#040814';
 const grayColor = '#A0A7C2';
+const grayTwo = '#454858';
 
 export default {
   tintColor,
@@ -17,5 +18,6 @@ export default {
   noticeBackground: tintColor,
   noticeText: lightColor,
   paginationDot: lightColor,
-  inactivePaginationDot: '#454858',
+  inactivePaginationDot: grayTwo,
+  slideMark: grayTwo
 };

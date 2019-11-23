@@ -59,6 +59,7 @@ const Rooms = ({ rooms, activeRoom, setActiveRoom }) => {
         layout={'default'}
         data={rooms}
         renderItem={RenderItem}
+        firstItem={rooms.findIndex((room) => room.name === activeRoom.name)}
         sliderWidth={Layout.window.width}
         itemWidth={itemSize.width}
         onSnapToItem={index => setActiveRoom(rooms[index])}
@@ -83,8 +84,7 @@ const shadowStyle = {
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 10 },
       shadowOpacity: 0.2,
-      shadowRadius: 2,
-      backgroundColor: '#ffdd44'
+      shadowRadius: 2
     },
     android: {
       elevation: 6
@@ -105,15 +105,17 @@ const styles = StyleSheet.create({
   slide: {
     width: itemSize.width,
     height: itemSize.height,
+    backgroundColor: 'transparent',
     borderRadius: 10,
     ...shadowStyle,
-    overflow: "hidden"
   },
   slideImage: {
     display: "flex",
     justifyContent: "flex-end",
     width: '100%',
-    height: '100%'
+    height: '100%',
+    borderRadius: 10,
+    overflow: "hidden"
   },
   slideTitleContainer: {
     display: "flex",
