@@ -5,7 +5,7 @@ import Colors from '../../constants/Colors';
 import Rooms from '../../components/Rooms';
 import RoomSettings from '../../components/RoomSettings/RoomSettings';
 
-const HomeScreen = ({ activeRoom, rooms, setActiveRoom }) => {
+const HomeScreen = ({ activeRoom, rooms, changeActiveRoom }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -14,7 +14,7 @@ const HomeScreen = ({ activeRoom, rooms, setActiveRoom }) => {
         </Text>
       </View>
       <View style={styles.container}>
-        <Rooms rooms={rooms} activeRoom={activeRoom} setActiveRoom={setActiveRoom}/>
+        <Rooms rooms={rooms} activeRoom={activeRoom} changeActiveRoom={changeActiveRoom}/>
         <RoomSettings/>
       </View>
     </View>

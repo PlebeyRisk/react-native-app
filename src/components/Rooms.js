@@ -10,7 +10,7 @@ import Gradients from '../constants/Gradients';
 
 const itemSize = {width: 287, height: 268};
 
-const Rooms = ({ rooms, activeRoom, setActiveRoom }) => {
+const Rooms = ({ rooms, activeRoom, changeActiveRoom }) => {
   const fadeValue = new Animated.Value(0);
 
   const animate = () => {
@@ -62,7 +62,7 @@ const Rooms = ({ rooms, activeRoom, setActiveRoom }) => {
         firstItem={rooms.findIndex((room) => room.name === activeRoom.name)}
         sliderWidth={Layout.window.width}
         itemWidth={itemSize.width}
-        onSnapToItem={index => setActiveRoom(rooms[index])}
+        onSnapToItem={index => changeActiveRoom(rooms[index])}
       />
       <Pagination
         dotsLength={rooms.length}

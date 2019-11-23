@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Text, View } from 'react-native';
 
 import selectors from '../../redux/selectors';
-import { setActiveRoom } from '../../redux/actions';
 import HomeScreen from './HomeScreen';
+import { loadRooms, changeActiveRoom } from '../../redux/thunks';
 
-const HomeScreenContainer = ({ activeRoom, setActiveRoom, rooms }) => {
+const HomeScreenContainer = ({ activeRoom, changeActiveRoom, rooms, loadRooms }) => {
+  useEffect(() => {
+    if (rooms !== null) return;
+    loadRooms();
+  }, [rooms]);
+
+  if (activeRoom === null || rooms === null) {
+    return (<View><Text>Loading...</Text></View>);
+  }
   return (
-    <HomeScreen activeRoom={activeRoom} setActiveRoom={setActiveRoom} rooms={rooms} />
+    <HomeScreen activeRoom={activeRoom} changeActiveRoom={changeActiveRoom} rooms={rooms} />
   );
 };
 
@@ -24,7 +33,8 @@ let mapStateToProps = state => {
 };
 
 let mapDispatchToProps = {
-  setActiveRoom
+  changeActiveRoom,
+  loadRooms
 };
 
 export default connect(

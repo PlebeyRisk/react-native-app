@@ -6,8 +6,8 @@ const getRooms = (state) => {
   return state.home.rooms;
 };
 
-const getSetTemperature = (state) => {
-  return state.home.setTemperature;
+const getDesiredTemperature = (state) => {
+  return state.home.desiredTemperature;
 };
 
 const getCurrentTemperature = (state) => {
@@ -18,12 +18,17 @@ const getGeoTemperature = (state) => {
   return state.home.geoTemperature;
 };
 
+const getRegion = (state) => {
+  return state.home.region;
+};
+
 const homeSelectors = {
   getActiveRoom,
   getRooms,
-  getSetTemperature,
+  getDesiredTemperature,
   getCurrentTemperature,
-  getGeoTemperature
+  getGeoTemperature,
+  getRegion
 };
 
 export default homeSelectors;

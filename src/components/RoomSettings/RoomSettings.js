@@ -15,7 +15,7 @@ const RoomSettings = () => {
     <SlidingUpPanel
       ref={c => _panel = c}
       containerStyle={styles.container}
-      draggableRange={{top: 400, bottom: 30}}
+      draggableRange={{top: 450, bottom: 30}}
       showBackdrop={false}
     >
       <LinearGradient
