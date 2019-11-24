@@ -16,7 +16,7 @@ export const updateDesiredTemperature = (roomName, temperature) => {
   return new Promise((resolve, reject) => {
     const roomIndex = getIndexByProperty(roomsData, 'name', roomName);
     if (roomIndex === -1) {
-      reject(new Error('комната с таким именем не найдена'));
+      reject(new Error(`комната с именем "${roomName}" не найдена`));
       return;
     }
     roomsData[roomIndex].temperature.desired = temperature;

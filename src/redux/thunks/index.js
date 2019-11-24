@@ -1,6 +1,7 @@
 import { setDesiredTemperature as setDesiredTemperatureAction,
         setRooms, setActiveRoom, setCurrentTemperature, setGeoTemperature, setRegion } from "../actions";
 import { updateDesiredTemperature, getRooms, getGeo } from "../../api/api";
+import constants from "../../constants";
 
 export const setDesiredTemperature = (roomName, temperature) => async dispatch => {
   try {
@@ -15,9 +16,9 @@ export const loadRooms = () => async dispatch => {
   try {
     const response = await getRooms();
     dispatch(setRooms(response));
-    dispatch(changeActiveRoom(response[0]));
+    dispatch(changeActiveRoom(response[response.findIndex((room) => room.name === constants.defaultActiveRoom)]));
   } catch(err) {
-    alert(err);
+    console.warn(err);
   }
 };
 

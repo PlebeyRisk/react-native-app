@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Colors from '../../constants/Colors';
-import Rooms from '../../components/Rooms';
+import Rooms from '../../components/rooms/Rooms';
 import RoomSettings from '../../components/RoomSettings/RoomSettings';
+import { Text } from '../../components/StyledText';
 
 const HomeScreen = ({ activeRoom, rooms, changeActiveRoom }) => {
   return (

@@ -6,6 +6,7 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreenContainer from '../screens/HomeScreen/HomeScreenContainer';
 import Colors from '../constants/Colors';
 import { ICONFONTS } from '../constants';
+import EmptyScreen from '../screens/EmptyScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -30,7 +31,7 @@ HomeStack.path = '';
 
 const AlertsStack = createStackNavigator(
   {
-    Alerts: HomeScreenContainer,
+    Alerts: EmptyScreen
   },
   config
 );
@@ -46,7 +47,7 @@ AlertsStack.path = '';
 
 const PurchasesStack = createStackNavigator(
   {
-    Purchases: HomeScreenContainer,
+    Purchases: EmptyScreen
   },
   config
 );
@@ -62,7 +63,7 @@ PurchasesStack.path = '';
 
 const ProfileStack = createStackNavigator(
   {
-    Profile: HomeScreenContainer,
+    Profile: EmptyScreen
   },
   config
 );

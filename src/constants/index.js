@@ -11,4 +11,9 @@ export const ICONFONTS = {
 	MATERIAL_COMMUNITY_ICONS: 'MATERIAL_COMMUNITY_ICONS',
 	MATERIAL_ICONS: 'MATERIAL_ICONS',
 	ANT_DESIGN: 'ANT_DESIGN',
+};
+
+export default {
+	temperature: { maxValue: 42 },
+	defaultActiveRoom: ROOMS.HALLWAY
 }

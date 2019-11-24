@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Text, View } from 'react-native';
 
 import TemperatureScreen from './TemperatureScreen';
 import selectors from '../../../../redux/selectors';
 import { setDesiredTemperature, loadGeo } from '../../../../redux/thunks';
+import { Preloader } from '../../../Preloader';
 
 const TemperatureScreenContainer = ({
   desiredTemperature, currentTemperature, geoTemperature,
@@ -16,7 +16,7 @@ const TemperatureScreenContainer = ({
   }, [geoTemperature]);
 
   if (geoTemperature === null || region === null) {
-    return (<View><Text>Loading...</Text></View>);
+    return <Preloader/>;
   }
 
   return (

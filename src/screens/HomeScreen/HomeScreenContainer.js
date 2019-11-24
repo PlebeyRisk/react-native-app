@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Text, View } from 'react-native';
 
 import selectors from '../../redux/selectors';
 import HomeScreen from './HomeScreen';
 import { loadRooms, changeActiveRoom } from '../../redux/thunks';
+import { Preloader } from '../../components/Preloader';
+import Colors from '../../constants/Colors';
 
 const HomeScreenContainer = ({ activeRoom, changeActiveRoom, rooms, loadRooms }) => {
   useEffect(() => {
@@ -13,8 +14,9 @@ const HomeScreenContainer = ({ activeRoom, changeActiveRoom, rooms, loadRooms })
   }, [rooms]);
 
   if (activeRoom === null || rooms === null) {
-    return (<View><Text>Loading...</Text></View>);
+    return <Preloader style={{backgroundColor: Colors.mainBackground}}/>;
   }
+
   return (
     <HomeScreen activeRoom={activeRoom} changeActiveRoom={changeActiveRoom} rooms={rooms} />
   );

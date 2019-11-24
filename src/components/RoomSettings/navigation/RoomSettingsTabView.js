@@ -1,23 +1,21 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Dimensions, StatusBar, Platform } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 
 import Colors from '../../../constants/Colors';
 import TemperatureScreenContainer from '../screens/TemperatureScreen/TemperatureScreenContainer';
 import TabBarIcon from '../../TabBarIcon';
 import { ICONFONTS } from '../../../constants';
+import { Preloader } from '../../Preloader';
+import Layout from '../../../constants/Layout';
 
 const LazyPlaceholder = ({ route }) => (
-  <View style={styles.scene}>
-    <Text>Loading {route.title}…</Text>
-  </View>
+  <Preloader title={ route.title }/>
 );
 
-const renderTabIcon = ({ focused, route }) => {
-  const { icon } = route;
-
-  return <TabBarIcon icon={icon} focused={focused}/>
-}
+const renderTabIcon = ({ focused, route }) => (
+  <TabBarIcon icon={route.icon} focused={focused}/>
+);
 
 const renderTabBar = (props) => (
   <TabBar
@@ -43,7 +41,9 @@ export default class RoomSettingsTabView extends React.Component {
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderLazyPlaceholder = ({ route }) => <LazyPlaceholder route={route} />;
+  _renderLazyPlaceholder = ({ route }) => (
+    <LazyPlaceholder route={route} />
+  );
 
   render() {
     return (
@@ -58,8 +58,7 @@ export default class RoomSettingsTabView extends React.Component {
         })}
         renderLazyPlaceholder={this._renderLazyPlaceholder}
         onIndexChange={this._handleIndexChange}
-        initialLayout={{ width: Dimensions.get('window').width }}
-        style={styles.container}
+        initialLayout={{ width: Layout.window.width }}
         renderTabBar={renderTabBar}
       />
     );
@@ -88,9 +87,6 @@ const tabsContainerNoShadow = {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: StatusBar.currentHeight,
-  },
   scene: {
     flex: 1,
     alignItems: 'center',

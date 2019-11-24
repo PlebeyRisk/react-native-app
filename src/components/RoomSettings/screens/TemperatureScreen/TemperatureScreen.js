@@ -1,10 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Platform } from 'react-native';
 
 import Colors from '../../../../constants/Colors';
 import Icon from '../../../Icon';
-import { ICONFONTS } from '../../../../constants';
+import constants, { ICONFONTS } from '../../../../constants';
 import Layout from '../../../../constants/Layout';
+import { Text } from '../../../StyledText';
+import CircularProgress from '../../../CircularProgress/CircularProgress';
 
 const InfoItem = ({ temperature, title, icon }) => (
   <View>
@@ -19,25 +21,43 @@ const InfoItem = ({ temperature, title, icon }) => (
 const TemperatureController = ({
   desiredTemperature, setDesiredTemperature, activeRoomName
 }) => {
+  const increaseValue = () => {
+    if (desiredTemperature >= constants.temperature.maxValue) return;
+
+    setDesiredTemperature(activeRoomName, ++desiredTemperature);
+  };
+
+  const decreaseValue = () => {
+    if (desiredTemperature <= 0) return;
+
+    setDesiredTemperature(activeRoomName, --desiredTemperature);
+  };
+
   return (
     <View style={styles.temperatureController}>
-      <TouchableOpacity
-        style={styles.controllerButton}
-        onPress={() => setDesiredTemperature(activeRoomName, --desiredTemperature)}
+      <TouchableOpacity style={styles.controllerButton}
+        onPress={() => decreaseValue()}
       >
-        <Icon icon={{name: 'minus', src: ICONFONTS.ANT_DESIGN}} color={Colors.mainText} size={20}/>
+        <Icon icon={{name: 'minus', src: ICONFONTS.ANT_DESIGN}} color={Colors.tintColor} size={20}/>
       </TouchableOpacity>
 
-      <View style={styles.circle}>
-        <View style={styles.infoTemperature}>
+      <CircularProgress
+        value={desiredTemperature / constants.temperature.maxValue}
+        size={174}
+        thickness={2}
+        color={Colors.tintColor}
+        unfilledColor={Colors.border}
+        animationMethod='timing'
+        animationConfig={{duration: 150}}
+      >
+        <View style={styles.circleInfo}>
           <Icon style={styles.icon} icon={{name: 'ios-snow', src: ICONFONTS.IONICONS}} color={Colors.tintColor} size={20}/>
           <Text style={styles.circleText}>{desiredTemperature}°</Text>
         </View>
-      </View>
+      </CircularProgress>
 
-      <TouchableOpacity
-        style={styles.controllerButton}
-        onPress={() => setDesiredTemperature(activeRoomName, ++desiredTemperature)}
+      <TouchableOpacity style={styles.controllerButton}
+        onPress={() => increaseValue()}
       >
         <Icon icon={{name: 'plus', src: ICONFONTS.ANT_DESIGN}} color={Colors.mainText} size={20}/>
       </TouchableOpacity>
@@ -69,6 +89,17 @@ export default TemperatureScreen = ({
     </View>
   </View>
 );
+
+const arcShadowStyle = {
+  ...Platform.select({
+    ios: {
+      shadowColor: Colors.tintColor,
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 1,
+      shadowRadius: 10
+    }
+  })
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -112,14 +143,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 100
   },
-  circle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 174,
-    height: 174,
-    borderRadius: 100,
-    borderWidth: 1,
-    borderColor: Colors.border
+  outerCircle: {
+    ...arcShadowStyle
+  },
+  circleInfo: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   circleText: {
     fontSize: 50,

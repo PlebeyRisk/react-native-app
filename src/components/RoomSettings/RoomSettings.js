@@ -1,21 +1,36 @@
 import React from 'react';
-import { StyleSheet, View, Platform, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Platform, TouchableOpacity, Animated } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 
 import Colors from '../../constants/Colors';
 import Gradients from '../../constants/Gradients';
 import RoomSettingsTabView from './navigation/RoomSettingsTabView';
+import Layout from '../../constants/Layout';
+
+const slideUpPanelHeight = 450;
 
 const RoomSettings = () => {
   let _panel;
   const { colors, start, end, locations } = Gradients.roomSettings;
 
+  const top = slideUpPanelHeight;
+  const bottom = 30;
+  const freeHeight = Layout.window.height - 490;
+  let currentTop = Math.round(freeHeight);
+
+  if (freeHeight > top) {
+    currentTop =  top;
+  } else if (freeHeight < bottom) {
+    currentTop = bottom;
+  }
+
   return (
     <SlidingUpPanel
       ref={c => _panel = c}
       containerStyle={styles.container}
-      draggableRange={{top: 450, bottom: 30}}
+      animatedValue={new Animated.Value(currentTop)}
+      draggableRange={{top, bottom: currentTop}}
       showBackdrop={false}
     >
       <LinearGradient
@@ -54,6 +69,7 @@ const shadowStyle = {
 
 const styles = StyleSheet.create({
   container: {
+    height: slideUpPanelHeight,
     flex: 1,
     borderRadius: 20,
     ...shadowStyle
