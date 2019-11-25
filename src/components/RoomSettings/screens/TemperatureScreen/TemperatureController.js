@@ -79,5 +79,8 @@ const styles = StyleSheet.create({
     fontSize: 50,
     letterSpacing: 4,
     color: Colors.mainText
+  },
+  icon: {
+    marginRight: 10
   }
 });
