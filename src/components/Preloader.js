@@ -4,7 +4,7 @@ import { MaterialIndicator } from 'react-native-indicators';
 
 import Colors from '../constants/Colors';
 
-export const Preloader = ({ style, title }) => {
+export const Preloader = ({ style = {}, title }) => {
   return (
     <View style={[style, styles.container]}>
       <MaterialIndicator color={Colors.tintColor}/>

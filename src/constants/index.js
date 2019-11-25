@@ -5,7 +5,7 @@ export const ROOMS = {
 	HALLWAY: 'HALLWAY'
 };
 
-export const ICONFONTS = {
+export const ICON_FONTS = {
 	FONT_AWESOME: 'FONT_AWESOME',
 	IONICONS: 'IONICONS',
 	MATERIAL_COMMUNITY_ICONS: 'MATERIAL_COMMUNITY_ICONS',
@@ -13,7 +13,45 @@ export const ICONFONTS = {
 	ANT_DESIGN: 'ANT_DESIGN',
 };
 
+export const WEATHER = {
+	CLEAR_SKY: '01',
+	FEW_CLOUDS: '02',
+	SCATTERED_CLOUDS: '03',
+	BROKEN_CLOUDS: '04',
+	SHOWER_RAIN: '09',
+	RAIN: '10',
+	THUNDERSTORM: '11',
+	SNOW: '13',
+	MIST: '50'
+}
+
+export const WEATHER_ID = {
+	thunderstorm: {min: 200, max: 299, name: WEATHER.THUNDERSTORM},
+	drizzle: {min: 300, max: 399, name: WEATHER.SHOWER_RAIN},
+	rain: {min: 500, max: 599, name: {
+		'500': WEATHER.RAIN,
+		'501': WEATHER.RAIN,
+		'502': WEATHER.RAIN,
+		'503': WEATHER.RAIN,
+		'504': WEATHER.RAIN,
+		'511': WEATHER.SNOW,
+		'520': WEATHER.SHOWER_RAIN,
+		'521': WEATHER.SHOWER_RAIN,
+		'522': WEATHER.SHOWER_RAIN,
+		'531': WEATHER.SHOWER_RAIN
+	}},
+	snow: {min: 600, max: 699, name: WEATHER.SNOW},
+	atmosphere: {min: 700, max: 799, name: WEATHER.MIST},
+	clear: {min: 800, max: 800, name: WEATHER.CLEAR_SKY},
+	clouds: {min: 801, max: 804, name: {
+		'801': WEATHER.FEW_CLOUDS,
+		'801': WEATHER.SCATTERED_CLOUDS,
+		'803': WEATHER.BROKEN_CLOUDS,
+		'804': WEATHER.BROKEN_CLOUDS
+	}}
+}
+
 export default {
 	temperature: { maxValue: 42 },
-	defaultActiveRoom: ROOMS.HALLWAY
+	defaultActiveRoom: ROOMS.LIVING_ROOM
 }

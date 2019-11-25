@@ -1,51 +1,35 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import TemperatureScreen from './TemperatureScreen';
 import selectors from '../../../../redux/selectors';
-import { setDesiredTemperature, loadGeo } from '../../../../redux/thunks';
-import { Preloader } from '../../../Preloader';
+import { setDesiredTemperature } from '../../../../redux/thunks';
 
-const TemperatureScreenContainer = ({
-  desiredTemperature, currentTemperature, geoTemperature,
-  setDesiredTemperature, activeRoom, region, loadGeo
-}) => {
-  useEffect(() => {
-    if (geoTemperature !== null) return;
-    loadGeo();
-  }, [geoTemperature]);
-
-  if (geoTemperature === null || region === null) {
-    return <Preloader/>;
-  }
-
+const TemperatureScreenContainer = ({ activeRoom, ...props }) => {
   return (
     <TemperatureScreen
+      {...props}
       activeRoomName={activeRoom.name}
-      desiredTemperature={desiredTemperature}
-      currentTemperature={currentTemperature}
-      geoTemperature={geoTemperature}
-      setDesiredTemperature={setDesiredTemperature}
-      region={region}
     />
   );
 };
 
 let mapStateToProps = state => {
   const { getActiveRoom, getDesiredTemperature, getCurrentTemperature,
-          getGeoTemperature, getRegion } = selectors.homeSelectors;
+          getIsUpdatingDesireTemperature } = selectors.homeSelectors;
+  const { getWeather, getGeolocation } = selectors.appSelectors;
   return {
     activeRoom: getActiveRoom(state),
     desiredTemperature: getDesiredTemperature(state),
     currentTemperature: getCurrentTemperature(state),
-    geoTemperature: getGeoTemperature(state),
-    region: getRegion(state),
+    weather: getWeather(state),
+    geolocation: getGeolocation(state),
+    isUpdatingDesireTemperature: getIsUpdatingDesireTemperature(state)
   };
 };
 
 let mapDispatchToProps = {
-  setDesiredTemperature,
-  loadGeo
+  setDesiredTemperature
 };
 
 export default connect(

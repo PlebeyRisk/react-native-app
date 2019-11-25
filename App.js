@@ -9,6 +9,7 @@ import {Provider} from 'react-redux';
 
 import store from './src/redux/store';
 import AppNavigator from './src/navigation/AppNavigator';
+import { changeGeolocation } from './src/redux/thunks';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -36,8 +37,11 @@ export default function App(props) {
 async function loadResourcesAsync() {
   await Promise.all([
     Asset.loadAsync([
-      require('./src/assets/images/robot-dev.png'),
-      require('./src/assets/images/robot-prod.png'),
+      require('./src/assets/images/weather/default-weather.png'),
+      require('./src/assets/images/rooms/living-room.jpg'),
+      require('./src/assets/images/rooms/bedroom.jpg'),
+      require('./src/assets/images/rooms/kitchen.jpg'),
+      require('./src/assets/images/rooms/hallway.jpg'),
     ]),
     Font.loadAsync({
       ...Ionicons.font,
@@ -50,10 +54,22 @@ async function loadResourcesAsync() {
       'Montserrat-Medium': require('./src/assets/fonts/Montserrat-Medium.ttf'),
     }),
   ]);
+
+  findCoordinates();
 }
 
+function findCoordinates() {
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      store.dispatch(changeGeolocation(position));
+    },
+    error => alert(error.message),
+    { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+  );
+};
+
 function handleLoadingError(error) {
-  console.warn(error);
+  alert(error);
 }
 
 function handleFinishLoading(setLoadingComplete) {

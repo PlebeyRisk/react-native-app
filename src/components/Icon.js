@@ -4,7 +4,7 @@ import { Ionicons, MaterialCommunityIcons,
 import { Platform } from 'react-native';
 
 import Colors from '../constants/Colors';
-import { ICONFONTS } from '../constants';
+import { ICON_FONTS } from '../constants';
 
 export default Icon = ({
   icon, color = '#000', size = 19, withShadow = false, shadowColor = Colors.tintColor, style = {}
@@ -29,13 +29,13 @@ export default Icon = ({
   };
 
   switch (icon.src) {
-    case ICONFONTS.MATERIAL_COMMUNITY_ICONS:
+    case ICON_FONTS.MATERIAL_COMMUNITY_ICONS:
       return <MaterialCommunityIcons {...options} />;
-    case ICONFONTS.FONT_AWESOME:
+    case ICON_FONTS.FONT_AWESOME:
       return <FontAwesome {...options} />;
-    case ICONFONTS.MATERIAL_ICONS:
+    case ICON_FONTS.MATERIAL_ICONS:
       return <MaterialIcons {...options} />;
-    case ICONFONTS.ANT_DESIGN:
+    case ICON_FONTS.ANT_DESIGN:
       return <AntDesign {...options} />;
     default:
       return <Ionicons {...options} />;

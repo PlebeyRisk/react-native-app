@@ -46,7 +46,7 @@ export default class ProgressCircle extends Component {
     const { thickness, unfilledColor, children, style } = this.props
 
     return (
-      <View style={[this.fullCircleStyle, { flexDirection: 'row' }, style]}>
+      <View style={[this.fullCircleStyle, { flexDirection: 'row' }, style, {transform: [{rotate: '-90deg'}]}]}>
         <View
           pointerEvents="box-none"
           style={{
@@ -55,7 +55,8 @@ export default class ProgressCircle extends Component {
             borderColor: unfilledColor,
             position: 'absolute',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            transform: [{rotate: '90deg'}]
           }}
         >
           {children}

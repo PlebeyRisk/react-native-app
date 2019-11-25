@@ -5,9 +5,10 @@ import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import Colors from '../../../constants/Colors';
 import TemperatureScreenContainer from '../screens/TemperatureScreen/TemperatureScreenContainer';
 import TabBarIcon from '../../TabBarIcon';
-import { ICONFONTS } from '../../../constants';
+import { ICON_FONTS } from '../../../constants';
 import { Preloader } from '../../Preloader';
 import Layout from '../../../constants/Layout';
+import EmptyScreen from '../screens/EmptyScreen';
 
 const LazyPlaceholder = ({ route }) => (
   <Preloader title={ route.title }/>
@@ -30,12 +31,12 @@ const renderTabBar = (props) => (
 
 export default class RoomSettingsTabView extends React.Component {
   state = {
-    index: 0,
+    index: 1,
     routes: [
-      { key: 'Lighting', title: 'Lighting', icon: { name: 'lightbulb-on', src: ICONFONTS.MATERIAL_COMMUNITY_ICONS }},
-      { key: 'Temperature', title: 'Temperature', icon: { name: 'thermometer-half', src: ICONFONTS.FONT_AWESOME }},
-      { key: 'Security', title: 'Security', icon: { name: 'ios-lock', src: ICONFONTS.IONICONS }},
-      { key: 'Windows', title: 'Windows', icon: { name: 'border-all', src: ICONFONTS.MATERIAL_ICONS }},
+      { key: 'Lighting', title: 'Lighting', icon: { name: 'lightbulb-on', src: ICON_FONTS.MATERIAL_COMMUNITY_ICONS }},
+      { key: 'Temperature', title: 'Temperature', icon: { name: 'thermometer-half', src: ICON_FONTS.FONT_AWESOME }},
+      { key: 'Security', title: 'Security', icon: { name: 'ios-lock', src: ICON_FONTS.IONICONS }},
+      { key: 'Windows', title: 'Windows', icon: { name: 'border-all', src: ICON_FONTS.MATERIAL_ICONS }},
     ],
   };
 
@@ -51,10 +52,10 @@ export default class RoomSettingsTabView extends React.Component {
         lazy
         navigationState={this.state}
         renderScene={SceneMap({
-          Lighting: TemperatureScreenContainer,
+          Lighting: EmptyScreen,
           Temperature: TemperatureScreenContainer,
-          Security: TemperatureScreenContainer,
-          Windows: TemperatureScreenContainer
+          Security: EmptyScreen,
+          Windows: EmptyScreen
         })}
         renderLazyPlaceholder={this._renderLazyPlaceholder}
         onIndexChange={this._handleIndexChange}

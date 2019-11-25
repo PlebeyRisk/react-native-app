@@ -1,5 +1,5 @@
 import { SET_ACTIVE_ROOM, SET_CURRENT_TEMPERATURE, SET_DESIRED_TEMPERATURE,
-				SET_GEO_TEMPERATURE, SET_REGION, SET_ROOMS } from "../actions/actionTypes";
+				SET_GEO_TEMPERATURE, SET_REGION, SET_ROOMS, SET_IS_UPDATING_DESIRE_TEMPERATURE } from "../actions/actionTypes";
 
 const initialState = {
 	activeRoom: null,
@@ -8,6 +8,7 @@ const initialState = {
 	currentTemperature: null,
 	desiredTemperature: null,
 	geoTemperature: null,
+	isUpdatingDesireTemperature: false
 };
 
 export default (state = initialState, action) => {
@@ -35,6 +36,10 @@ export default (state = initialState, action) => {
 		case SET_REGION:
 			return {...state,
 				region: action.region
+			};
+		case SET_IS_UPDATING_DESIRE_TEMPERATURE:
+			return {...state,
+				isUpdatingDesireTemperature: action.status
 			};
 		default:
 			return state;
