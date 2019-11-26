@@ -26,7 +26,7 @@ export default TemperatureController = ({
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button}
+      <TouchableOpacity style={[styles.button, {marginRight: -18}]}
         onPress={() => decreaseValue()}
         disabled = {isUpdatingDesireTemperature}
       >
@@ -53,7 +53,7 @@ export default TemperatureController = ({
         </CircularProgress>
       </ImageBackground>
 
-      <TouchableOpacity style={styles.button}
+      <TouchableOpacity style={[styles.button, {marginLeft: -18}]}
         onPress={() => increaseValue()}
         disabled = {isUpdatingDesireTemperature}
       >
