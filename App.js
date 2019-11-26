@@ -37,11 +37,12 @@ export default function App(props) {
 async function loadResourcesAsync() {
   await Promise.all([
     Asset.loadAsync([
+      require('./src/assets/images/radial-gradient.png'),
       require('./src/assets/images/weather/default-weather.png'),
       require('./src/assets/images/rooms/living-room.jpg'),
       require('./src/assets/images/rooms/bedroom.jpg'),
       require('./src/assets/images/rooms/kitchen.jpg'),
-      require('./src/assets/images/rooms/hallway.jpg'),
+      require('./src/assets/images/rooms/hallway.jpg')
     ]),
     Font.loadAsync({
       ...Ionicons.font,

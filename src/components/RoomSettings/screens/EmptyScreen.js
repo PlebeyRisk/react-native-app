@@ -9,8 +9,7 @@ export default EmptyScreen = ({ route }) => {
     <View style={{
       flex: 1,
       alignItems: 'center',
-      paddingTop: 40,
-      backgroundColor: Colors.mainBackground
+      paddingTop: 40
     }}>
       <Text style={{fontSize: 20, color: Colors.textTwo}}>{route.title}</Text>
     </View>

@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.plebeyrisk.reactnativeapp",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.plebeyrisk.reactnativeapp"
     }
   }
 }

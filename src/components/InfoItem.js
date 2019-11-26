@@ -4,6 +4,7 @@ import { StyleSheet, View, Image } from 'react-native';
 import Colors from '../constants/Colors';
 import Icon from './Icon';
 import { Text } from './StyledText';
+import defaultWeatherImg from '../assets/images/weather/default-weather.png';
 
 export const InfoItem = ({ temperature, title, icon }) => {
   let noData = false;
@@ -14,19 +15,21 @@ export const InfoItem = ({ temperature, title, icon }) => {
 
   if (noData === true) return <View><Text>Loading...</Text></View>;
 
+  const titleMargin = typeof icon === 'string' ? {marginLeft: 2} : {marginLeft: 2};
+
   return (
     <View>
       <View style={styles.container}>
         {typeof icon === 'string'
           ? <Image style={styles.image}
               source={{uri: icon}}
-              defaultSource={require('../assets/images/weather/default-weather.png')}
+              defaultSource={defaultWeatherImg}
             />
           : <Icon style={styles.icon} icon={icon} color={Colors.textTwo} size={20}/>
         }
         <Text style={styles.temperature}>{temperature}°C</Text>
       </View>
-      <Text style={styles.title}> {title} </Text>
+      <Text style={[styles.title, titleMargin]}> {title} </Text>
     </View>
   );
 };
@@ -34,7 +37,8 @@ export const InfoItem = ({ temperature, title, icon }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingLeft: 5
   },
   icon: {
     marginRight: 10
@@ -51,9 +55,8 @@ const styles = StyleSheet.create({
     color: Colors.textTwo
   },
   title: {
-    marginLeft: -3,
     fontSize: 12,
     fontWeight: '500',
-    color: Colors.mainText
+    color: Colors.mainText,
   }
 });
