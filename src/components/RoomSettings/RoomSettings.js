@@ -25,13 +25,26 @@ const RoomSettings = () => {
     currentTop = bottom;
   }
 
+  const bounce = (position) => {
+    if (position > top) {
+      setTimeout(() => _panel.show(top), 0);
+      return;
+    }
+
+    if (position < currentTop) {
+      setTimeout(() => _panel.show(currentTop), 0);
+    }
+  }
+
   return (
     <SlidingUpPanel
       ref={c => _panel = c}
       containerStyle={styles.container}
       animatedValue={new Animated.Value(currentTop)}
-      draggableRange={{top, bottom: currentTop}}
+      draggableRange={{top: top + 30, bottom: currentTop - 30}}
       showBackdrop={false}
+      onDragEnd={bounce}
+      onMomentumDragEnd={bounce}
     >
       <LinearGradient
         colors={colors}
@@ -42,7 +55,7 @@ const RoomSettings = () => {
       >
         <TouchableOpacity
           style={styles.hideButton}
-          onPress={() => _panel.hide()}
+          onPress={() => _panel.show(currentTop)}
           activeOpacity={1}
         >
           <View style={styles.slideMark} />
